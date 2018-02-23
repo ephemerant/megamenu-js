@@ -74,7 +74,8 @@ Screen style's
     font-family: "Ionicons";
     display: none;
     cursor: pointer;
-    float: right;
+    position: absolute;
+    right: 0;
     padding: 1.5em 2em;
     background: #fff;
     color: #333;
@@ -86,6 +87,7 @@ Screen style's
     list-style: none;
     padding: 0;
     position: relative;
+    display: table;
     /* IF .menu position=relative -> ul = container width, ELSE ul = 100% width */
     box-sizing: border-box;
 }
@@ -101,7 +103,7 @@ Screen style's
 }
 
 .menu > ul > li {
-    float: left;
+    display: table-cell;
     background: #e9e9e9;
     padding: 0;
     margin: 0;
@@ -144,7 +146,7 @@ Screen style's
     margin: 0;
     padding-bottom: 0;
     list-style: none;
-    width: 25%;
+    width: 100%;
     background: none;
     float: left;
 }
@@ -253,4 +255,9 @@ Mobile style's
     .menu .show-on-mobile {
         display: block;
     }
+}
+
+.menu > ul.show-on-mobile > li > ul {
+    width: 100% !important;
+    flex-flow: column;
 }
