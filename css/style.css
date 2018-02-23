@@ -122,6 +122,7 @@ Screen style's
 
 .menu > ul > li > a {
     position: relative;
+    text-align: center;
 }
 
 .menu > ul > li:hover > a:after {
