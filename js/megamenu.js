@@ -5,7 +5,8 @@
         var columnPercentageWidth = options.columnPercentageWidth || 25; // Each column in the megamenu dropdown is this wide        
         var mobileWidth = options.mobileWidth || 943; // Width for when to switch over to mobile mode
 
-        var $menuContainer = this.find('> .menu'); // Menu subcontainer
+        var $this = this;
+        var $menuContainer = $this.find('> .menu'); // Menu subcontainer
         var $menu = $menuContainer.find('> ul'); // Menu list that directly contains menu items
         var $menuItems = $menu.find('> li'); // Each menu navigation item and its megamenu    
         var $megaMenus = $menuItems.find('> ul'); // The actual megamenu dropdowns
@@ -61,18 +62,22 @@
 
         // Scooch boxes to the right in order be left-aligned their with corresponding menu items, as much as possible
         function realignBoxes() {
+            // Clear any set width values
+            $this.width('');
+
+            // Set width to a whole number. Otherwise, there is a discrepancy
+            // since 'display: table' on '.menu > ul' rounds any subpixels down,
+            // while everything else rounds them up.
+            $this.width($this.width());
+
             $megaMenus.each(function (n, megaMenu) {
                 var $megaMenu = $(megaMenu);
                 var $navItem = $megaMenu.parent();
 
-                // Don't shift if it's full width
-                if ($megaMenu.find('> li').length * columnPercentageWidth >= 100)
-                    return;
-
                 // Calculate how much to shift by
                 var leftOffset = $navItem.offset().left - $menu.offset().left;
                 var navWidth = $megaMenu.outerWidth();
-                var rightLimit = $menu.outerWidth();
+                var rightLimit = $this.outerWidth();
 
                 // See if we can move it as far to the left as we would like
                 if (leftOffset + navWidth > rightLimit)
@@ -82,7 +87,7 @@
             });
         }
 
-        realignBoxes();
+        setTimeout(realignBoxes, 0);
 
         $(window).resize(function () {
             if ($(window).width() > mobileWidth)

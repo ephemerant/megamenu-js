@@ -82,7 +82,6 @@ Screen style's
 }
 
 .menu > ul {
-    margin: 0 auto;
     width: 100%;
     list-style: none;
     padding: 0;
@@ -107,6 +106,7 @@ Screen style's
     background: #e9e9e9;
     padding: 0;
     margin: 0;
+    border: 1px solid transparent;
 }
 
 .menu > ul > li a {
@@ -117,12 +117,30 @@ Screen style's
 
 .menu > ul > li:hover {
     background: #f0f0f0;
+    border: 1px solid rgba(0,0,0,0.2);
+}
+
+.menu > ul > li > a {
+    position: relative;
+}
+
+.menu > ul > li:hover > a:after {
+    background: #f0f0f0;
+    width: 100%;
+    height: 1px;
+    display: block;
+    content: ' ';
+    position: absolute;
+    bottom: -1px;
+    left: 0px;
+    z-index: 100;
 }
 
 .menu > ul > li > ul {
     display: none;
     width: 100%;
     background: #f0f0f0;
+    border: 1px solid rgba(0,0,0,0.2);
     padding: 20px;
     position: absolute;
     z-index: 99;
