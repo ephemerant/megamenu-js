@@ -66,8 +66,8 @@
             $this.width('');
 
             // Set width to a whole number. Otherwise, there is a discrepancy
-            // since 'display: table' on '.menu > ul' rounds any subpixels down,
-            // while everything else rounds them up.
+            // since 'display: table' on '.menu > ul' rounds any subpixels down
+            // (in Chrome, at least), while everything else rounds them up.
             $this.width($this.width());
 
             $megaMenus.each(function (n, megaMenu) {
@@ -87,7 +87,7 @@
             });
         }
 
-        setTimeout(realignBoxes, 0);
+        setTimeout(realignBoxes, 100);
 
         $(window).resize(function () {
             if ($(window).width() > mobileWidth)
